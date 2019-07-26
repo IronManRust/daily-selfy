@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = document.getElementById("name");
     const frame = document.getElementById("frame");
     const ratio = document.getElementById("ratio");
+    const resolution = document.getElementById("resolution");
+    const dimensions = document.getElementById("dimensions");
     const orientation = document.getElementById("orientation");
     const overlay = document.getElementById("overlay");
     const stream = document.getElementById("stream");
@@ -91,21 +93,160 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    const getVideoSizeWidth = function() {
+        switch (resolution.value) {
+            case "320l":
+                return 320;
+            case "480l":
+                return 480;
+            case "640l":
+                return 640;
+            case "720l":
+                return 720;
+            case "1080l":
+                return 1080;
+            case "1920l":
+                return 1920;
+            default:
+                return null;
+        }
+    };
+
+    const getVideoSizeHeight = function() {
+        switch (resolution.value) {
+            case "320p":
+                return 320;
+            case "480p":
+                return 480;
+            case "640p":
+                return 640;
+            case "720p":
+                return 720;
+            case "1080p":
+                return 1080;
+            case "1920p":
+                return 1920;
+            default:
+                return null;
+        }
+    };
+
     const getVideoConstraints = function() {
         switch (orientation.value) {
             case "default":
-                return true;
+                return {
+                    "facingMode": null,
+                    "width": {
+                        "min": getVideoSizeWidth()
+                    },
+                    "height": {
+                        "min": getVideoSizeHeight()
+                    }
+                };
             case "standard":
                 return {
-                    "facingMode": "environment"
+                    "facingMode": "environment",
+                    "width": {
+                        "min": getVideoSizeWidth()
+                    },
+                    "height": {
+                        "min": getVideoSizeHeight()
+                    }
                 };
             case "selfie":
                 return {
-                    "facingMode": "user"
+                    "facingMode": "user",
+                    "width": {
+                        "min": getVideoSizeWidth()
+                    },
+                    "height": {
+                        "min": getVideoSizeHeight()
+                    }
                 };
             default:
                 return false;
         }
+    };
+
+    const getCanvasMultiplier = function() {
+        switch (ratio.value) {
+            case "1by1":
+                return 1;
+            case "4by3":
+                return 4 / 3;
+            case "16by9":
+                return 16 / 9;
+            case "21by9":
+                return 21 / 9;
+            default:
+                return 0;
+        }
+    };
+
+    const getCanvasWidth = function() {
+        switch (resolution.value) {
+            case "320l":
+                return 320;
+            case "320p":
+                return 320 / getCanvasMultiplier();
+            case "480l":
+                return 480;
+            case "480p":
+                return 480 / getCanvasMultiplier();
+            case "640l":
+                return 640;
+            case "640p":
+                return 640 / getCanvasMultiplier();
+            case "720l":
+                return 720;
+            case "720p":
+                return 720 / getCanvasMultiplier();
+            case "1080l":
+                return 1080;
+            case "1080p":
+                return 1080 / getCanvasMultiplier();
+            case "1920l":
+                return 1920;
+            case "1920p":
+                return 1920 / getCanvasMultiplier();
+            default:
+                return null;
+        }
+    };
+
+    const getCanvasHeight = function() {
+        switch (resolution.value) {
+            case "320l":
+                return 320 / getCanvasMultiplier();
+            case "320p":
+                return 320;
+            case "480l":
+                return 480 / getCanvasMultiplier();
+            case "480p":
+                return 480;
+            case "640l":
+                return 640 / getCanvasMultiplier();
+            case "640p":
+                return 640;
+            case "720l":
+                return 720 / getCanvasMultiplier();
+            case "720p":
+                return 720;
+            case "1080l":
+                return 1080 / getCanvasMultiplier();
+            case "1080p":
+                return 1080;
+            case "1920l":
+                return 1920 / getCanvasMultiplier();
+            case "1920p":
+                return 1920;
+            default:
+                return null;
+        }
+    };
+
+    const dimensionsSet = function() {
+        dimensions.value = `${Math.floor(getCanvasWidth())}x${Math.floor(getCanvasHeight())}`;
     };
 
     const cameraConnect = function(media) {
@@ -137,14 +278,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const cameraCapture = function(enabled) {
         if (enabled) {
             canvas.classList.add(classHidden);
-            canvas.setAttribute(attributeWidth, stream.clientWidth);
-            canvas.setAttribute(attributeHeight, stream.clientHeight);
-            canvas.getContext("2d").drawImage(stream, 0, 0, stream.clientWidth, stream.clientHeight);
+            canvas.setAttribute(attributeWidth, getCanvasWidth());
+            canvas.setAttribute(attributeHeight, getCanvasHeight());
+            canvas.getContext("2d").drawImage(stream, 0, 0, getCanvasWidth(), getCanvasHeight());
+            output.setAttribute(attributeWidth, getCanvasWidth());
+            output.setAttribute(attributeHeight, getCanvasHeight());
             output.setAttribute(attributeSource, canvas.toDataURL("image/png"));
         } else {
             canvas.classList.remove(classHidden);
             canvas.removeAttribute(attributeWidth);
             canvas.removeAttribute(attributeHeight);
+            output.removeAttribute(attributeWidth);
+            output.removeAttribute(attributeHeight);
             output.removeAttribute(attributeSource);
         }
     };
@@ -167,9 +312,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     ratio.addEventListener(eventChange, () => {
         ratioSet();
+        dimensionsSet();
+        cameraEnable();
+    });
+
+    resolution.addEventListener(eventChange, () => {
+        ratioSet();
+        dimensionsSet();
+        cameraEnable();
     });
 
     orientation.addEventListener(eventChange, () => {
+        ratioSet();
+        dimensionsSet();
         cameraEnable();
     });
 
@@ -221,6 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleInputs(false);
     toggleResults(false);
     ratioSet();
+    dimensionsSet();
     cameraEnable();
 
 });
