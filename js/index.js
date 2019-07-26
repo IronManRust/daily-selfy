@@ -265,10 +265,40 @@ document.addEventListener("DOMContentLoaded", () => {
                     toggleInputs(true);
                     cameraConnect(media);
                 })
-                .catch(() => {
+                .catch((error) => {
                     toggleInputs(false);
                     cameraConnect(null);
-                    messageUser("Unable to connect to camera. Please change permissions and/or reload the page.");
+                    if (error &&
+                        error.name) {
+                        switch (error.name) {
+                            case "AbortError":
+                                messageUser("Unable to connect to camera - reason unknown.");
+                                break;
+                            case "NotAllowedError":
+                                messageUser("Unable to connect to camera - invalid permissions.");
+                                break;
+                            case "NotFoundError":
+                                messageUser("Unable to connect to camera - no valid hardware found.");
+                                break;
+                            case "NotReadableError":
+                                messageUser("Unable to connect to camera - hardware issue detected.");
+                                break;
+                            case "OverconstrainedError":
+                                messageUser(`Unable to connect to camera - invalid constraint (${error.constraint ? error.constraint : "unknown"}).`);
+                                break;
+                            case "SecurityError":
+                                messageUser("Unable to connect to camera - disabled media support.");
+                                break;
+                            case "TypeError":
+                                messageUser("Unable to connect to camera - invalid or insecure request.");
+                                break;
+                            default:
+                                messageUser("Unable to connect to camera.");
+                                break;
+                        }
+                    } else {
+                        messageUser("Unable to connect to camera.");
+                    }
                 });
         } else {
             messageUser("Unable to connect to camera.");
