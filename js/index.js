@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const attributeDisabled = "disabled";
 
     const classHidden = "d-none";
+    const classRatio4by3 = "embed-responsive-4by3";
+    const classRatio16by9 = "embed-responsive-16by9";
+    const classRatio21by9 = "embed-responsive-21by9";
 
     const eventChange = "change";
     const eventClick = "click";
@@ -17,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const name = document.getElementById("name");
     const frame = document.getElementById("frame");
+    const ratio = document.getElementById("ratio");
     const orientation = document.getElementById("orientation");
     const overlay = document.getElementById("overlay");
     const stream = document.getElementById("stream");
@@ -56,6 +60,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const messageUser = function(message) {
         if (message) {
             alert(message); // TODO: Change To Bootstrap Alert
+        }
+    };
+
+    const ratioSet = function() {
+        const embeddedItems = document.getElementsByClassName("embed-responsive");
+        for (const embeddedItem of embeddedItems) {
+            embeddedItem.classList.remove(classRatio4by3);
+            embeddedItem.classList.remove(classRatio16by9);
+            embeddedItem.classList.remove(classRatio21by9);
+            switch (ratio.value) {
+                case "4by3":
+                    embeddedItem.classList.add(classRatio4by3);
+                    break;
+                case "16by9":
+                    embeddedItem.classList.add(classRatio16by9);
+                    break;
+                case "21by9":
+                    embeddedItem.classList.add(classRatio21by9);
+                    break;
+                default:
+                    // Do Nothing
+                    break;
+            }
         }
     };
 
@@ -111,9 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
             output.setAttribute(attributeSource, canvas.toDataURL("image/png"));
         } else {
             canvas.classList.remove(classHidden);
-            canvas.setAttribute(attributeWidth, 0);
-            canvas.setAttribute(attributeHeight, 0);
-            canvas.getContext("2d").drawImage(null, 0, 0, 0, 0);
+            canvas.removeAttribute(attributeWidth);
+            canvas.removeAttribute(attributeHeight);
             output.removeAttribute(attributeSource);
         }
     };
@@ -132,6 +158,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Do Nothing
                 break;
         }
+    });
+
+    ratio.addEventListener(eventChange, () => {
+        ratioSet();
     });
 
     orientation.addEventListener(eventChange, () => {
@@ -185,6 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     toggleInputs(false);
     toggleResults(false);
+    ratioSet();
     cameraEnable();
 
 });

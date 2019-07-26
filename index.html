@@ -40,6 +40,16 @@
         </div>
         <div class="input-group">
             <div class="input-group-prepend">
+                <span class="input-group-text">Aspect ratio</span>
+            </div>
+            <select id="ratio" class="form-control">
+                <option value="4by3">4:3</option>
+                <option value="16by9">16:9</option>
+                <option value="21by9">21:9</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
                 <span class="input-group-text">Orientation</span>
             </div>
             <select id="orientation" class="form-control">
@@ -49,10 +59,10 @@
             </select>
         </div>
         <div class="input-group">
-            <div class="embed-responsive embed-responsive-4by3 position-absolute">
+            <div class="embed-responsive position-absolute">
                 <img id="overlay" class="embed-responsive-item" src="./img/overlay-none.png" alt="Overlay" />
             </div>
-            <div class="embed-responsive embed-responsive-4by3">
+            <div class="embed-responsive">
                 <video id="stream" class="embed-responsive-item" poster="./img/standby.svg" autoplay="true"></video>
                 <canvas id="canvas" class="embed-responsive-item"></canvas>
             </div>
@@ -62,7 +72,7 @@
             <button id="clear" class="btn btn-secondary" type="button">Clear picture</button>
         </div>
         <div class="input-group">
-            <div class="embed-responsive embed-responsive-4by3">
+            <div class="embed-responsive">
                 <img id="standby" class="embed-responsive-item" src="./img/standby.svg" alt="Standby" />
                 <img id="output" class="embed-responsive-item" alt="Output" />
             </div>
