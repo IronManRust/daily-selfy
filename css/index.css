@@ -1,0 +1,8 @@
+.container>div {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#overlay {
+    z-index: 2;
+}

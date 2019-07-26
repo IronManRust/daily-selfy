@@ -1,0 +1,25 @@
+{
+    "name": "daily-selfy",
+    "version": "1.0.0",
+    "description": "Capture a picture a day for use in time-lapse animations.",
+    "keywords": [
+        "daily",
+        "selfie",
+        "camera"
+    ],
+    "license": "MIT",
+    "author": {
+        "name": "Shawn Headrick",
+        "email": "shawn_headrick@yahoo.com",
+        "url": "https://github.com/IronManRust"
+    },
+    "homepage": "https://github.com/IronManRust/daily-selfy",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/IronManRust/daily-selfy.git"
+    },
+    "bugs": {
+        "url": "https://github.com/IronManRust/daily-selfy/issues",
+        "email": "shawn_headrick@yahoo.com"
+    }
+}

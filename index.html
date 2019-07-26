@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Daily Selfy</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <meta name="description" content="Capture a picture a day for use in time-lapse animations." />
+    <meta name="keywords" content="daily, selfie, camera" />
+    <meta name="author" content="Shawn Headrick" />
+    <link href="./img/favicon.ico" type="image/x-icon" rel="icon" />
+    <link href="./css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="./css/index.css" type="text/css" rel="stylesheet" />
+    <script src="./js/index.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Daily Selfy</h1>
+            <img class="w-25" src="./img/camera.png" alt="Camera" />
+        </div>
+        <div class="text-center">
+            <p class="lead">Capture a picture a day for use in time-lapse animations.</p>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Name</span>
+            </div>
+            <input id="name" class="form-control" type="text" placeholder="The subject's name" />
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Frame</span>
+            </div>
+            <select id="frame" class="form-control">
+                <option value="none">None</option>
+                <option value="face">Face</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Orientation</span>
+            </div>
+            <select id="orientation" class="form-control">
+                <option value="default">Default</option>
+                <option value="standard">Standard</option>
+                <option value="selfie">Selfie</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <div class="embed-responsive embed-responsive-4by3 position-absolute">
+                <img id="overlay" class="embed-responsive-item" src="./img/overlay-none.png" alt="Overlay" />
+            </div>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video id="stream" class="embed-responsive-item" poster="./img/standby.svg" autoplay="true"></video>
+                <canvas id="canvas" class="embed-responsive-item"></canvas>
+            </div>
+        </div>
+        <div class="button-toolbar text-center">
+            <button id="capture" class="btn btn-primary" type="button">Take picture</button>
+            <button id="clear" class="btn btn-secondary" type="button">Clear picture</button>
+        </div>
+        <div class="input-group">
+            <div class="embed-responsive embed-responsive-4by3">
+                <img id="standby" class="embed-responsive-item" src="./img/standby.svg" alt="Standby" />
+                <img id="output" class="embed-responsive-item" alt="Output" />
+            </div>
+        </div>
+        <div class="button-toolbar text-center">
+            <button id="download" class="btn btn-success" type="button">Download</button>
+        </div>
+    </div>
+</body>
+
+</html>
