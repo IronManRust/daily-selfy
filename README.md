@@ -1,8 +1,8 @@
 # Daily Selfy
 
-TODO: Add Netlify Link
+[https://ironmanrust-daily-selfy.netlify.com](https://ironmanrust-daily-selfy.netlify.com)
 
-TODO: Add Netlify Badge
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d54be578-7f6e-43c7-954b-c299746a318b/deploy-status)](https://app.netlify.com/sites/ironmanrust-daily-selfy/deploys)
 
 ## Summary
 
