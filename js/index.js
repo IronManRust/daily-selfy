@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const attributeDisabled = "disabled";
 
     const classHidden = "d-none";
+    const classRatio1by1 = "embed-responsive-1by1";
     const classRatio4by3 = "embed-responsive-4by3";
     const classRatio16by9 = "embed-responsive-16by9";
     const classRatio21by9 = "embed-responsive-21by9";
@@ -59,17 +60,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const messageUser = function(message) {
         if (message) {
-            alert(message); // TODO: Change To Bootstrap Alert
+            alert(message);
         }
     };
 
     const ratioSet = function() {
         const embeddedItems = document.getElementsByClassName("embed-responsive");
         for (const embeddedItem of embeddedItems) {
+            embeddedItem.classList.remove(classRatio1by1);
             embeddedItem.classList.remove(classRatio4by3);
             embeddedItem.classList.remove(classRatio16by9);
             embeddedItem.classList.remove(classRatio21by9);
             switch (ratio.value) {
+                case "1by1":
+                    embeddedItem.classList.add(classRatio1by1);
+                    break;
                 case "4by3":
                     embeddedItem.classList.add(classRatio4by3);
                     break;
