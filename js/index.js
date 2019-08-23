@@ -95,6 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const getVideoSizeWidth = function() {
         switch (resolution.value) {
+            case "160l":
+                return 160;
             case "320l":
                 return 320;
             case "480l":
@@ -103,8 +105,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 return 640;
             case "720l":
                 return 720;
+            case "800l":
+                return 800;
+            case "960l":
+                return 960;
             case "1080l":
                 return 1080;
+            case "1280l":
+                return 1280;
             case "1920l":
                 return 1920;
             default:
@@ -114,6 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const getVideoSizeHeight = function() {
         switch (resolution.value) {
+            case "160p":
+                return 160;
             case "320p":
                 return 320;
             case "480p":
@@ -122,8 +132,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 return 640;
             case "720p":
                 return 720;
+            case "800p":
+                return 800;
+            case "960p":
+                return 960;
             case "1080p":
                 return 1080;
+            case "1280p":
+                return 1280;
             case "1920p":
                 return 1920;
             default:
@@ -185,6 +201,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const getCanvasWidth = function() {
         switch (resolution.value) {
+            case "160l":
+                return 160;
+            case "160p":
+                return 160 / getCanvasMultiplier();
             case "320l":
                 return 320;
             case "320p":
@@ -201,10 +221,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 return 720;
             case "720p":
                 return 720 / getCanvasMultiplier();
+            case "800l":
+                return 800;
+            case "800p":
+                return 800 / getCanvasMultiplier();
+            case "960l":
+                return 960;
+            case "960p":
+                return 960 / getCanvasMultiplier();
             case "1080l":
                 return 1080;
             case "1080p":
                 return 1080 / getCanvasMultiplier();
+            case "1280l":
+                return 1280;
+            case "1280p":
+                return 1280 / getCanvasMultiplier();
             case "1920l":
                 return 1920;
             case "1920p":
@@ -216,6 +248,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const getCanvasHeight = function() {
         switch (resolution.value) {
+            case "160l":
+                return 160 / getCanvasMultiplier();
+            case "160p":
+                return 160;
             case "320l":
                 return 320 / getCanvasMultiplier();
             case "320p":
@@ -232,10 +268,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 return 720 / getCanvasMultiplier();
             case "720p":
                 return 720;
+            case "800l":
+                return 800 / getCanvasMultiplier();
+            case "800p":
+                return 800;
+            case "960l":
+                return 960 / getCanvasMultiplier();
+            case "960p":
+                return 960;
             case "1080l":
                 return 1080 / getCanvasMultiplier();
             case "1080p":
                 return 1080;
+            case "1280l":
+                return 1280 / getCanvasMultiplier();
+            case "1280p":
+                return 1280;
             case "1920l":
                 return 1920 / getCanvasMultiplier();
             case "1920p":
