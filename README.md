@@ -22,3 +22,19 @@ Details:
 ## Screenshot
 
 ![Screenshot](screenshot.png)
+
+## Post-Processing
+
+To make a video out of the selfie images, use the following shell script:
+
+`ffmpeg -framerate 1 -pattern_type glob -i "*.png" video.mp4`
+
+Explanation:
+
+* `ffmpeg` - [https://www.ffmpeg.org](https://www.ffmpeg.org)
+* `-framerate 1` - Set the framerate to 1 fps; adjust as desired.
+* `-pattern_type glob` - Use glob pattern matching for input files.
+* `-i "*.png"` - Sequentially match all `.png` files in the current directory as input.
+* `video.mp4` - Set the output file name.
+
+FFmpeg has many additional options to adjust settings such as video resolution and codec used, but this should provide a sane, basic output.
