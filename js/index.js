@@ -39,10 +39,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggleInputs = function(enabled) {
         if (enabled) {
             overlay.classList.remove(classHidden);
+            overlay.removeAttribute(attributeDisabled);
             capture.removeAttribute(attributeDisabled);
             clear.removeAttribute(attributeDisabled);
         } else {
             overlay.classList.add(classHidden);
+            overlay.setAttribute(attributeDisabled, true);
             capture.setAttribute(attributeDisabled, true);
             clear.setAttribute(attributeDisabled, true);
         }
@@ -404,6 +406,17 @@ document.addEventListener("DOMContentLoaded", () => {
         ratioSet();
         dimensionsSet();
         cameraEnable();
+    });
+
+    overlay.addEventListener(eventClick, () => {
+        if (stream.srcObject !== null) {
+            toggleResults(true);
+            cameraCapture(true);
+        } else {
+            toggleResults(false);
+            cameraCapture(false);
+            messageUser("Unable to capture image.");
+        }
     });
 
     capture.addEventListener(eventClick, () => {
