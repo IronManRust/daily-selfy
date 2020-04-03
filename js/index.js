@@ -111,6 +111,20 @@ document.addEventListener("DOMContentLoaded", () => {
         document.cookie = `orientation=${orientation.value}`;
     };
 
+    const frameSet = function() {
+        switch (frame.value) {
+            case "none":
+                overlay.setAttribute(attributeSource, "./img/overlay-none.png");
+                break;
+            case "face":
+                overlay.setAttribute(attributeSource, "./img/overlay-face.svg");
+                break;
+            default:
+                // Do Nothing
+                break;
+        }
+    };
+
     const ratioSet = function() {
         const embeddedItems = document.getElementsByClassName("embed-responsive");
         for (const embeddedItem of embeddedItems) {
@@ -425,21 +439,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     frame.addEventListener(eventChange, () => {
         cookieWrite();
-        switch (frame.value) {
-            case "none":
-                overlay.setAttribute(attributeSource, "./img/overlay-none.png");
-                break;
-            case "face":
-                overlay.setAttribute(attributeSource, "./img/overlay-face.svg");
-                break;
-            default:
-                // Do Nothing
-                break;
-        }
+        frameSet();
+        ratioSet();
+        dimensionsSet();
+        cameraEnable();
     });
 
     ratio.addEventListener(eventChange, () => {
         cookieWrite();
+        frameSet();
         ratioSet();
         dimensionsSet();
         cameraEnable();
@@ -447,6 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     resolution.addEventListener(eventChange, () => {
         cookieWrite();
+        frameSet();
         ratioSet();
         dimensionsSet();
         cameraEnable();
@@ -454,6 +463,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     orientation.addEventListener(eventChange, () => {
         cookieWrite();
+        frameSet();
         ratioSet();
         dimensionsSet();
         cameraEnable();
@@ -518,6 +528,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleInputs(false);
     toggleResults(false);
     cookieRead();
+    frameSet();
     ratioSet();
     dimensionsSet();
     cameraEnable();
