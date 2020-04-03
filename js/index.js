@@ -68,6 +68,49 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    const cookieRead = function() {
+        const cookieParts = document.cookie.split(";");
+        if (cookieParts) {
+            for (const cookiePart of cookieParts) {
+                if (cookiePart) {
+                    const cookiePartKeyValuePair = cookiePart.split("=");
+                    if (cookiePartKeyValuePair && cookiePartKeyValuePair.length === 2) {
+                        const key = cookiePartKeyValuePair[0].trim();
+                        const value = cookiePartKeyValuePair[1].trim();
+                        switch (key) {
+                            case "name":
+                                name.value = value;
+                                break;
+                            case "frame":
+                                frame.value = value;
+                                break;
+                            case "ratio":
+                                ratio.value = value;
+                                break;
+                            case "resolution":
+                                resolution.value = value;
+                                break;
+                            case "orientation":
+                                orientation.value = value;
+                                break;
+                            default:
+                                // Do Nothing
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    const cookieWrite = function() {
+        document.cookie = `name=${name.value}`;
+        document.cookie = `frame=${frame.value}`;
+        document.cookie = `ratio=${ratio.value}`;
+        document.cookie = `resolution=${resolution.value}`;
+        document.cookie = `orientation=${orientation.value}`;
+    };
+
     const ratioSet = function() {
         const embeddedItems = document.getElementsByClassName("embed-responsive");
         for (const embeddedItem of embeddedItems) {
@@ -376,7 +419,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Setup Event Listeners
 
+    name.addEventListener(eventChange, () => {
+        cookieWrite();
+    });
+
     frame.addEventListener(eventChange, () => {
+        cookieWrite();
         switch (frame.value) {
             case "none":
                 overlay.setAttribute(attributeSource, "./img/overlay-none.png");
@@ -391,18 +439,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     ratio.addEventListener(eventChange, () => {
+        cookieWrite();
         ratioSet();
         dimensionsSet();
         cameraEnable();
     });
 
     resolution.addEventListener(eventChange, () => {
+        cookieWrite();
         ratioSet();
         dimensionsSet();
         cameraEnable();
     });
 
     orientation.addEventListener(eventChange, () => {
+        cookieWrite();
         ratioSet();
         dimensionsSet();
         cameraEnable();
@@ -466,6 +517,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     toggleInputs(false);
     toggleResults(false);
+    cookieRead();
     ratioSet();
     dimensionsSet();
     cameraEnable();
