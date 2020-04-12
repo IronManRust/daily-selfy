@@ -104,20 +104,21 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const cookieWrite = function() {
-        document.cookie = `name=${name.value}`;
-        document.cookie = `frame=${frame.value}`;
-        document.cookie = `ratio=${ratio.value}`;
-        document.cookie = `resolution=${resolution.value}`;
-        document.cookie = `orientation=${orientation.value}`;
+        const expires = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toUTCString();
+        document.cookie = `name=${name.value}; expires=${expires}`;
+        document.cookie = `frame=${frame.value}; expires=${expires}`;
+        document.cookie = `ratio=${ratio.value}; expires=${expires}`;
+        document.cookie = `resolution=${resolution.value}; expires=${expires}`;
+        document.cookie = `orientation=${orientation.value}; expires=${expires}`;
     };
 
     const frameSet = function() {
         switch (frame.value) {
             case "none":
-                overlay.setAttribute(attributeSource, "./img/overlay-none.png");
+                overlay.setAttribute(attributeSource, "./overlay-none.png");
                 break;
             case "face":
-                overlay.setAttribute(attributeSource, "./img/overlay-face.svg");
+                overlay.setAttribute(attributeSource, "./overlay-face.svg");
                 break;
             default:
                 // Do Nothing

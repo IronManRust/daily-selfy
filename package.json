@@ -1,6 +1,6 @@
 {
     "name": "daily-selfy",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Capture a picture a day for use in time-lapse animations.",
     "keywords": [
         "daily",
@@ -21,5 +21,18 @@
     "bugs": {
         "url": "https://github.com/IronManRust/daily-selfy/issues",
         "email": "shawn_headrick@yahoo.com"
+    },
+    "scripts": {
+        "clean": "./node_modules/.bin/rimraf ./dist",
+        "build": "npm run clean && npm run build-content && npm run build-dependencies",
+        "build-content": "./node_modules/.bin/copyfiles --flat ./css/*.* ./html/*.* ./img/*.* ./js/*.* ./dist",
+        "build-dependencies": "./node_modules/.bin/copyfiles --flat ./node_modules/bootstrap-css-only/css/bootstrap.css ./dist"
+    },
+    "dependencies": {
+        "bootstrap-css-only": "^4.4.1"
+    },
+    "devDependencies": {
+        "copyfiles": "^2.2.0",
+        "rimraf": "^3.0.2"
     }
 }
