@@ -14,7 +14,7 @@ Have you ever wanted to make a long-duration selfie time-lapse animation, but we
 
 Details:
 
-* Nothing to install - it's just a fully-responsive HTML5 webpage.
+* Nothing to install - it's just a fully-responsive HTML5 webpage. However, if you'd prefer offline support, it can be installed and used as a progressive web application.
 * No cloud storage to deal with - save your images directly to your device.
 * Works equally well with laptops (default orientation) and phones/tablets (standard or selfie orientation).
 * When taking selfies, optionally overlay a face-shaped frame to assist with aligning your image and cut down on required post-processing work.
