@@ -1,0 +1,20 @@
+{
+    "name": "Daily Selfy",
+    "short_name": "Daily Selfy",
+    "display": "standalone",
+    "description": "Capture a picture a day for use in time-lapse animations.",
+    "categories": [
+        "daily",
+        "selfie",
+        "camera"
+    ],
+    "orientation": "any",
+    "icons": [{
+        "src": "camera.png",
+        "sizes": "256x256",
+        "type": "image/png"
+    }],
+    "start_url": "/",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff"
+}
