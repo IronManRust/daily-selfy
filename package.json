@@ -1,6 +1,6 @@
 {
     "name": "daily-selfy",
-    "version": "1.0.5",
+    "version": "1.1.0",
     "description": "Capture a picture a day for use in time-lapse animations.",
     "keywords": [
         "daily",
@@ -25,14 +25,16 @@
     "scripts": {
         "clean": "./node_modules/.bin/rimraf ./dist",
         "build": "npm run clean && npm run build-content && npm run build-dependencies",
-        "build-content": "./node_modules/.bin/copyfiles --flat ./css/*.* ./html/*.* ./img/*.* ./js/*.* ./dist",
-        "build-dependencies": "./node_modules/.bin/copyfiles --flat ./node_modules/bootstrap-css-only/css/bootstrap.css ./dist"
+        "build-content": "./node_modules/.bin/copyfiles --flat ./css/*.* ./html/*.* ./img/*.* ./js/*.* ./json/*.* ./dist",
+        "build-dependencies": "./node_modules/.bin/copyfiles --flat ./node_modules/bootstrap-css-only/css/bootstrap.css ./node_modules/bootstrap-css-only/css/bootstrap.css.map ./dist",
+        "serve": "http-server ./dist -d false -a 0.0.0.0 -p 8080"
     },
     "dependencies": {
         "bootstrap-css-only": "^4.4.1"
     },
     "devDependencies": {
-        "copyfiles": "^2.2.0",
+        "copyfiles": "^2.4.1",
+        "http-server": "^0.12.3",
         "rimraf": "^3.0.2"
     }
 }
