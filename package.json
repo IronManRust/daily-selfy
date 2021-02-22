@@ -1,6 +1,6 @@
 {
     "name": "daily-selfy",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "Capture a picture a day for use in time-lapse animations.",
     "keywords": [
         "daily",
@@ -26,7 +26,7 @@
         "clean": "./node_modules/.bin/rimraf ./dist",
         "build": "npm run clean && npm run build-content && npm run build-dependencies",
         "build-content": "./node_modules/.bin/copyfiles --flat ./css/*.* ./html/*.* ./img/*.* ./js/*.* ./json/*.* ./dist",
-        "build-dependencies": "./node_modules/.bin/copyfiles --flat ./node_modules/bootstrap-css-only/css/bootstrap.css ./node_modules/bootstrap-css-only/css/bootstrap.css.map ./dist",
+        "build-dependencies": "./node_modules/.bin/copyfiles --flat ./node_modules/bootstrap-css-only/css/bootstrap.min.css ./node_modules/bootstrap-css-only/css/bootstrap.min.css.map ./dist",
         "serve": "http-server ./dist -d false -a 0.0.0.0 -p 8080"
     },
     "dependencies": {
